@@ -1,0 +1,96 @@
+.custom-line-height {
+    line-height: 1.6; /* Adjust as needed */
+  }
+  /* Container for the entire page */
+.page-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Styling for the left text content */
+.text-content {
+  font-family: 'Arial, sans-serif';
+  line-height: 1.5;
+}
+
+/* Right-side heptagon container */
+.heptagon-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Common heptagon styles */
+.heptagon {
+    width: 350px;
+    height: 350px;
+    clip-path: polygon(
+      50% 0%,       /* Top center */
+      90% 17.5%,    /* Top-right */
+      100% 62.5%,   /* Bottom-right */
+      75% 100%,     /* Bottom */
+      25% 100%,     /* Bottom-left */
+      0% 62.5%,     /* Bottom-left corner */
+      10% 17.5%     /* Top-left corner */
+    );
+    position: absolute;
+    z-index: 0;
+    border-radius: 25px; /* Adjust the value to make corners smoother */
+  }
+  
+  
+
+/* Red heptagon */
+
+    .black-heptagon {
+        background-color: #1a1a1a; /* Dark gray/black */
+        top: -110px;
+        z-index: 0;
+      }
+      
+      /* Crimson heptagon */
+      .red-heptagon {
+        background-color: #ec6868; /* Crimson or deep red-orange */
+        top:-150px;
+        left: 120px;
+        z-index: 1;
+      }
+
+/* Common styles for the overlay boxes */
+.box {
+  
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+/* Box 1 - Overview */
+.overview-box {
+    top: -100px; /* Move it a bit higher */
+    left: 60px;  /* Adjust horizontal positioning */
+    width: 180px;
+  }
+  
+  /* Box 2 - Audience */
+  .audience-box {
+    top: 50px;   /* Slightly adjust vertical position */
+    left: 30px; /* Push it to the right to avoid overlap */
+    width: 200px;
+  }
+  
+  /* Box 3 - Employees */
+  .employees-box {
+    top: 10px;  /* Move it down for better spacing */
+    left: 250px; /* Adjust horizontal alignment */
+    width: 240px;
+  }
+  

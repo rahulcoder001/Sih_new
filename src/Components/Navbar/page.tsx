@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
 import './navbar.css';
 import Link from 'next/link';
@@ -18,7 +17,7 @@ const Navbar = () => {
         const response = await axios.get("/api/verify-token");
         
           setIsSuperUser(response.data.superuser);
-          setIsAuthenticated(true);
+          setIsAuthenticated(response.data.ok);
        
       } catch (error) {
         console.error("Token verification failed:", error);
@@ -40,31 +39,32 @@ const Navbar = () => {
   };
 
   return (
-    <section className='flex items-center justify-between p-4'>
-      <ul className='flex flex-row space-x-4 list-none p-0 m-0'>
-        <div>
+    <section className='px-20 p-5'>
+      <ul className='flex flex-row  list-none  justify-between'>
+        <div className='flex'>
           <h2 style={{ fontFamily: 'Irish Grover, cursive', fontSize: '2rem' }}>
             <Link href="/">DocuVer</Link>
           </h2>
         </div>
-        <div className='navbar'>
-          <li>What is DocuVer</li>
-          <li>Platform</li>
-          <li>Solutions</li>
+        <div className='flex gap-10 text-sm items-center text-gray-500'>
+          <li className='font-bold text-black'>Home</li>
+          <li>How it work</li>
+          <li>Download</li>
           {isSuperUser ? (
-            <li><Link href="/upload">Upload</Link></li>
+            <li><Link href="/upload">UploadFile</Link></li>
           ) : (
-            <li><Link href="/verify">Verify</Link></li>
+            <li><Link href="/verify">VerifyFile</Link></li>
           )}
-          <li>About</li>
-          <li>Contact</li>
         </div>
 
-        <div className='login'>
+        <div className='login flex items-center font-bold underline'>
           {isAuthenticated ? (
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout} className='bg-white p-2 px-3 text-xs rounded-2xl mr-3 shadow-xl shadow-slate-200'>LOG OUT</button>
           ) : (
-            <Link href="/login">Log in</Link>
+            <div>
+              <button onClick={()=>{router.push("/login")}} className='bg-white p-2 px-3 text-xs rounded-2xl mr-3 shadow-xl shadow-slate-200'>LOG IN</button>
+              <button onClick={()=>{router.push("/signup")}} className='bg-red-400 p-2 px-3 text-xs rounded-2xl text-white '>SIGN UP</button>
+            </div>
           )}
         </div>
       </ul>

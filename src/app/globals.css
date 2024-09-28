@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  margin: 0.5rem;
-}
-
-:root {
-  --tw-bg-opacity: 1;
-  background-color: #000000ea; /* Set root background to black */
-  color: white; /* Set default text color to white */
+body{
+  background: linear-gradient(to right,     rgba(243, 230, 230, 1),     rgba(253, 241, 240, 1),     rgba(253, 242, 239, 1),     rgba(253, 245, 239, 1),     rgba(254, 248, 238, 1),     rgba(254, 251, 238, 1),     rgba(247, 245, 234, 1));
 }

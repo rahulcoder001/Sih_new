@@ -6,11 +6,24 @@ export async function GET(req:NextRequest) {
     const token = req.cookies.get('token')?.value||"";
 
     // Verify token
+    if(!token){
+      return NextResponse.json({ 
+        superuser:false,
+        ok:false
+      });
+    }
     const decoded = jwt.verify(token, "fghjkjhgfghjk");
     const superuser = decoded.superuser;
 
-    return NextResponse.json({ superuser:superuser });
+    return NextResponse.json({ 
+      superuser:superuser,
+      ok:true
+     });
   } catch (error) {
-    return NextResponse.json({ message: 'Invalid token' }, { status: 401 });
+    return NextResponse.json({
+       message: 'Invalid token',
+       superuser:false,
+      ok:false
+       }, { status: 401 });
   }
 }

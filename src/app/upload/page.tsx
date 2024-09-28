@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import SHA256 from "crypto-js/sha256";
 import HashStorage from "../../contract/HashStorage.json";
-import Loader from "../../../Components/Loader/page";
+import Loader from "../../Components/Loader/page";
 
 const Page = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -151,13 +151,15 @@ const Page = () => {
   }
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl w-full">
-        <h1 className="text-center text-4xl text-white mb-8 font-semibold">Document Upload</h1>
-        <form className="flex flex-col gap-6">
+    <section className="min-h-screen flex items-center justify-center">
+    <div className="bg-gray-800 bg-opacity-30 shadow-lg rounded-lg p-8 w-11/12 md:w-8/12 lg:w-6/12">
+      <h1 className="text-center text-4xl text-red-400 mb-6 font-bold">Document Upload</h1>
+      <form className="flex flex-col gap-6">
+        <div className="flex flex-col ">
+          <label className=" mb-2 text-sm font-semibold text-black" htmlFor="documentType">Select Document Type</label>
           <select
             onChange={(e) => setDocumentType(e.target.value)}
-            className="px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500 transition duration-200"
+            className="w-full px-4 py-3 text-gray-900 outline-red-400 bg-gray-200 border border-gray-400 rounded-md focus:outline-none "
           >
             <option value="">Select Document Type</option>
             <option value="Birth Certificate">Birth Certificate</option>
@@ -165,61 +167,58 @@ const Page = () => {
             <option value="Mark Sheet Class 12th">Mark Sheet Class 12th</option>
             <option value="PAN Card">PAN Card</option>
           </select>
+        </div>
 
+        <div className="flex flex-col">
+          <label className="text-sm font-semibold text-black mb-2" htmlFor="recipientName">Recipient Email</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Recipient name"
-            className="px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500 transition duration-200"
+            className="w-full px-4 py-3 text-gray-900 bg-gray-200 border outline-red-400 border-gray-400 rounded-md focus:outline-none "
           />
+        </div>
 
-          <div className="flex gap-6">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="issuingDate" className="text-gray-400">Issuing Date</label>
-              <input
-                type="date"
-                value={startdate}
-                onChange={(e) => setStartdate(e.target.value)}
-                className="px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500 transition duration-200"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <label htmlFor="expiringDate" className="text-gray-400">Expiring Date (Optional)</label>
-              <input
-                type="date"
-                value={enddate}
-                onChange={(e) => setEnddate(e.target.value)}
-                className="px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-blue-500 transition duration-200"
-              />
-            </div>
+        <div className="flex flex-col md:flex-row md:gap-6">
+          <div className="flex flex-col w-full">
+            <label className="text-sm font-semibold text-black mb-2" htmlFor="issuingDate">Issuing Date</label>
+            <input
+              type="date"
+              value={startdate}
+              onChange={(e) => setStartdate(e.target.value)}
+              className="w-full px-4 py-3 text-gray-900 bg-gray-200 border outline-red-400 border-gray-400 rounded-md focus:outline-none "
+            />
           </div>
+        </div>
 
+        <div className="flex flex-col">
+          <label className=" mb-2 text-sm font-semibold text-black" htmlFor="fileUpload">Upload File</label>
           <input
             type="file"
             onChange={handleProfileChange}
-            className="px-4 py-3 text-white bg-gray-700 border border-gray-600 rounded-md focus:outline-none bg-none outline-none focus:border-blue-500 transition duration-200"
+            className="w-full px-4 py-3 text-gray-900 bg-gray-200 border border-gray-400 rounded-md focus:outline-none outline-red-400"
           />
+        </div>
 
-          <div className="flex justify-center mt-8">
-            <button
-              type="button"
-              onClick={handlesubmit}
-              className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-500 border border-transparent rounded-lg font-bold transition duration-200"
-            >
-              Submit
-            </button>
-            <button
-              type="button"
-              className="ml-4 px-6 py-3 text-white bg-red-600 hover:bg-red-500 border border-transparent rounded-lg font-bold transition duration-200"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+        <div className="w-full flex justify-center mt-6">
+          <button
+            type="button"
+            onClick={handlesubmit}
+            className="w-full md:w-auto px-6 py-3 bg-red-400 text-white font-semibold rounded-lg hover:bg-red-500 transition duration-300"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            className="ml-4 w-full md:w-auto px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
   );
 };
 
